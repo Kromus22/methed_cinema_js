@@ -1,4 +1,5 @@
 import { getTriends } from './services.js';
+import renderCard from './renderCard.js';
 
 // находим баннер с фильмом недели на странице, чтобы затем перерисовывать его с помощью полученных данных
 const filmWeek = document.querySelector('.film-week')
@@ -22,8 +23,13 @@ const firstRender = data => {
 
 const renderVideo = async () => {
   const data = await getTriends()
+  //отделяем первую карточку отдельно под промо и остальные отдельно под список фильмов.
+  const [firstCard, ...otherCard] = data.results
 
-  firstRender(data.results[0])
+  //другие карточки, крoме первой(промо)
+  otherCard.length = 12
+  firstRender(firstCard)
+  renderCard(otherCard)
 }
 
 export default renderVideo

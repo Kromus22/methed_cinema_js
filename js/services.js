@@ -11,14 +11,24 @@ const getData = url => fetch(url)
     if (response.ok) {
       return response.json()
     }
-    throw `Беда произошла! Что делать то?? Ту ошибка ${response.status}`
+    throw `Беда произошла! Что делать то?? Тут ошибка ${response.status}`
   })
   .catch(err => console.error(err))
 
 
-
+//api и прочее взяты с сайта - themoviedb.org
 
 export const getTriends = async (type = 'all', period = 'day', page = 1) => {
   const url = `${BASE_URL}/trending/${type}/${period}?api_key=${API_KEY}${LANG}&page=${page}`
+  return await getData(url)
+}
+
+export const getTop = async (type, page = 1) => {
+  const url = `${BASE_URL}${type}/top_rated?api_key=${API_KEY}${LANG}&page=${page}`
+  return await getData(url)
+}
+
+export const getPopular = async (type, page = 1) => {
+  const url = `${BASE_URL}${type}/popular?api_key=${API_KEY}${LANG}&page=${page}`
   return await getData(url)
 }
