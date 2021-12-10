@@ -18,7 +18,7 @@ const getData = url => fetch(url)
 
 //api и прочее взяты с сайта - themoviedb.org
 
-export const getTriends = async (type = 'all', period = 'week', page = 2) => {
+export const getTriends = async (type = 'all', period = 'day', page = 1) => {
   const url = `${BASE_URL}/trending/${type}/${period}?api_key=${API_KEY}${LANG}&page=${page}`
   return await getData(url)
 }

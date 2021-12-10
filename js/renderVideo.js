@@ -5,7 +5,7 @@ import renderCard from './renderCard.js';
 const filmWeek = document.querySelector('.film-week')
 
 // отрисовка баннера по данным, взятых с апи
-const firstRender = (data, { key }) => {
+const firstRender = (data, key) => {
   const {
     vote_average: voteAverage,
     backdrop_path: backdropPath,

@@ -3,15 +3,16 @@ import { getVideo } from "./services.js"
 
 const listCard = document.querySelector('.other-films__list')
 //получаем данные (data) из нашего запроса к апи и потом отрисовываем карточки
-const renderCard = async (data) => {
+const renderCard = (data, type) => {
 
 
   listCard.textContent = ''
 
   Promise.all(data.map(async (item) => {
+    const mediaType = item.media_type ? type.media_type : type
 
-    const video = await getVideo(item.id, item.media_type)
-    const { key } = video.results[0]?.key
+    const video = await getVideo(item.id, mediaType)
+    const key = video.results[0]?.key
 
     const card = document.createElement('li')
     card.className = 'other-films__item'
